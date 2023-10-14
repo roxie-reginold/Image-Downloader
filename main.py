@@ -36,7 +36,7 @@ def download_image(image_url: str, name: str, folder: str = None):
 
 
 if __name__ == '__main__':
-    input_url: str = input('Enter a url ')
+    input_url: str = input('Enter a url: ')
     input_name: str = input('What would you like to name it?: ')
 
     print('Dowloading in progress...')
