@@ -2,12 +2,23 @@ import os
 import requests
 from pathlib import Path
 
+def get_extension(image_url: str) -> str | None:
+    extensions: list[str] = ['.png', '.jpeg', '.jpg', ',gif', 'svg']
+    for extension in extensions:
+        if extension in image_url:
+            return extension
+
 def download_image(image_url: str, name: str):
     # Get the path to the "Downloads" folder
     downloads_folder = str(Path.home() / "Downloads")
 
+    # Get the file extension
+    extension = get_extension(image_url)
+    if not extension:
+        raise Exception('Image extension could not be located!')
+
     # Create the full path for the image file
-    image_name = os.path.join(downloads_folder, name)
+    image_name = os.path.join(downloads_folder, f'{name}{extension}')
 
     # Check if the file name exists
     if os.path.isfile(image_name):
